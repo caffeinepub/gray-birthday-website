@@ -1,0 +1,277 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Mobile-first birthday SPA for Gray with mood routing, GIF carousel, and animated chat pages",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Set up client-side routing for landing page and dynamic mood pages.",
+      "acceptanceCriteria": [
+        "Navigating from the landing page to any mood card updates the URL to /mood/<slug> and renders the mood page without a full page reload.",
+        "Refreshing the browser on /mood/<slug> still loads the correct mood page.",
+        "At least the following slugs are supported: sad, doubt, laugh, celebrate, stressed (names can match data IDs)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the app shell and client-side router with routes for \"/\" and \"/mood/:slug\", plus a catch-all not-found route that links back to landing; include route-level wrappers needed for smooth transitions."
+        },
+        {
+          "path": "frontend/src/pages/LandingPage.tsx",
+          "operation": "create",
+          "description": "Create the landing page view component rendered at \"/\" and ensure it navigates via client-side routing to mood pages (no full reload)."
+        },
+        {
+          "path": "frontend/src/pages/MoodPage.tsx",
+          "operation": "create",
+          "description": "Create the dynamic mood page view component rendered at \"/mood/:slug\" and read the slug from the router params."
+        },
+        {
+          "path": "frontend/public/404.html",
+          "operation": "create",
+          "description": "Add a SPA fallback 404 file to improve deep-link refresh behavior on static hosting for routes like \"/mood/<slug>\" (redirect/load the SPA entry)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add a static TypeScript mock data module defining mood sections and messages for the app to render.",
+      "acceptanceCriteria": [
+        "data.ts defines the Message and MoodSection types exactly as described (id, type, content, senderName, senderGifUrl; and mood id, title, themeColor, backgroundGradient, messages).",
+        "Landing page and mood pages read from this data module (no backend calls).",
+        "Data includes 5 mood sections that correspond to the landing page navigation labels."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/data.ts",
+          "operation": "create",
+          "description": "Create the static mock data module exporting Message and MoodSection types and an array of 5 MoodSection records (sad, doubt, laugh, celebrate, stressed), plus a dedicated list/constant for the hero’s 3 GIF URLs."
+        },
+        {
+          "path": "frontend/src/pages/LandingPage.tsx",
+          "operation": "modify",
+          "description": "Wire the landing page to read mood navigation labels and hero GIF URLs from frontend/src/data.ts (no backend calls)."
+        },
+        {
+          "path": "frontend/src/pages/MoodPage.tsx",
+          "operation": "modify",
+          "description": "Wire the mood page to resolve the selected MoodSection by slug from frontend/src/data.ts and render from that data only."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Implement a mobile-first landing page with light, airy, celebratory styling and clean typography.",
+      "acceptanceCriteria": [
+        "On small screens (e.g., ~375px width), spacing and typography are comfortable and not cramped; content does not overflow horizontally.",
+        "Tailwind responsive typography uses smaller defaults on mobile and scales up at md+ (e.g., text-sm base, text-base at md, and larger headings at lg).",
+        "Overall styling matches an “high-end digital greeting card” + “modern chat app” feel."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/LandingPage.tsx",
+          "operation": "modify",
+          "description": "Implement the landing page layout using strict mobile-first spacing/typography and a light celebratory aesthetic (soft pastels/whites/subtle gradients); optionally compose shadcn-ui components (e.g., Card/Button) from outside frontend/src/components/ui. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Create the global Tailwind entry stylesheet (tailwind base/components/utilities) and add global background + typography defaults for a light airy celebratory look."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Add a 3-GIF hero carousel with infinite auto-play cross-fade transitions.",
+      "acceptanceCriteria": [
+        "Carousel cycles through exactly 3 GIF URLs sourced from the static data module (or a dedicated constant in the same module).",
+        "Transitions are cross-fade (opacity) and loop infinitely on a timer.",
+        "Only one GIF is visible at a time and the change is smooth (no flash/jump).",
+        "Hero remains responsive: maintains aspect ratio and looks good from mobile to desktop."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/GifCarousel.tsx",
+          "operation": "create",
+          "description": "Create a responsive hero GIF carousel component that cycles through exactly 3 GIF URLs with an infinite timed cross-fade using Framer Motion AnimatePresence."
+        },
+        {
+          "path": "frontend/src/pages/LandingPage.tsx",
+          "operation": "modify",
+          "description": "Add the hero section and render the GifCarousel using the 3 GIF URLs sourced from frontend/src/data.ts."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Add a poem section using a handwritten font with scroll-triggered progressive reveal animation.",
+      "acceptanceCriteria": [
+        "Poem text is centered and uses a distinct cursive/handwritten font compared to body text.",
+        "The reveal animation triggers as the poem scrolls into view and reveals progressively (line or word).",
+        "Animation is smooth on mobile and does not cause layout shifts (no jank)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/PoemReveal.tsx",
+          "operation": "create",
+          "description": "Create a poem section component that uses the cursive/handwritten font and performs a scroll-triggered progressive reveal (line-by-line or word-by-word) using motion primitives (e.g., IntersectionObserver + Framer Motion)."
+        },
+        {
+          "path": "frontend/src/pages/LandingPage.tsx",
+          "operation": "modify",
+          "description": "Place the PoemReveal section directly under the hero and ensure centered, readable mobile-first presentation."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Add the “Open when” navigation grid with 5 exact labels, routing to mood pages with hover/tap scale feedback.",
+      "acceptanceCriteria": [
+        "All 5 labels match the provided text exactly.",
+        "Cards are laid out mobile-first (single column or 2-column as space allows) and become a grid on larger screens.",
+        "Hover (desktop) and tap (mobile) scale interactions are implemented and feel responsive.",
+        "Clicking a card navigates to the correct mood slug derived from the static data module."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/OpenWhenGrid.tsx",
+          "operation": "create",
+          "description": "Create a mobile-first grid of 5 distinctive cards/buttons with exact labels and hover/tap scale feedback; optionally compose shadcn-ui components (e.g., Card/Button) from outside frontend/src/components/ui. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/LandingPage.tsx",
+          "operation": "modify",
+          "description": "Render the OpenWhenGrid and wire each card to navigate to the corresponding /mood/:slug route using slugs from frontend/src/data.ts."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Add two distinct footer action buttons that only log to console when clicked.",
+      "acceptanceCriteria": [
+        "Both buttons render at the bottom of the landing page and are visually distinct.",
+        "Clicking each button triggers a unique console.log message identifying which button was clicked.",
+        "No navigation or backend calls occur from these buttons."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/FooterActions.tsx",
+          "operation": "create",
+          "description": "Create a footer actions component rendering two distinct buttons (“Personal Playlist” and “Love Globe”) that only log unique console messages when clicked; optionally compose shadcn-ui Button from outside frontend/src/components/ui. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/LandingPage.tsx",
+          "operation": "modify",
+          "description": "Add FooterActions at the bottom of the landing page and ensure no navigation or backend calls occur on click."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Implement mood pages that load mood data by slug and apply mood-based theming.",
+      "acceptanceCriteria": [
+        "For each mood slug, page background and accents change according to the MoodSection fields (themeColor and backgroundGradient).",
+        "At least these mood vibes are clearly differentiated: sad (soft blues/lavenders), celebrate (vibrant gold/confetti-like), stressed (calming sage/green).",
+        "If an unknown slug is visited, a user-friendly not-found state is shown with a way back to the landing page."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/MoodPage.tsx",
+          "operation": "modify",
+          "description": "Apply dynamic theming based on the selected MoodSection’s themeColor and backgroundGradient fields; render a friendly not-found state for unknown slugs with a link back to \"/\"."
+        },
+        {
+          "path": "frontend/src/components/MoodThemeSurface.tsx",
+          "operation": "create",
+          "description": "Create a small layout/surface component to consistently apply background gradient and accent styling for mood pages (so vibes are clearly differentiated across slugs)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Create a premium chat-thread UI on mood pages supporting text/audio/video message types with GIF avatars.",
+      "acceptanceCriteria": [
+        "Each message shows senderName and a GIF avatar (senderGifUrl) in/near the bubble.",
+        "Text messages render readable wrapped text with proper padding.",
+        "Audio messages render with an HTML5 audio player inside a bubble.",
+        "Video messages render as an embedded player (iframe or video) sized responsively within a bubble.",
+        "Message alignment is consistent and clearly intentional (alternating sides or a centered timeline)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/chat/ChatThread.tsx",
+          "operation": "create",
+          "description": "Create the chat thread component that renders the list of messages in a premium iMessage/WhatsApp-like style with consistent alignment rules and spacing."
+        },
+        {
+          "path": "frontend/src/components/chat/ChatMessageBubble.tsx",
+          "operation": "create",
+          "description": "Create a message bubble component that supports Message.type rendering for text, audio (HTML5 audio), and video (responsive embed), and displays senderName plus a small looping GIF avatar (senderGifUrl)."
+        },
+        {
+          "path": "frontend/src/pages/MoodPage.tsx",
+          "operation": "modify",
+          "description": "Render the ChatThread on mood pages, passing the selected MoodSection.messages from frontend/src/data.ts."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Add Framer Motion polish: stagger-in messages and smooth celebratory page transitions between routes.",
+      "acceptanceCriteria": [
+        "On entering a mood page, messages animate in with a stagger (not all at once) using fade + upward movement.",
+        "Route transitions between landing and mood pages animate smoothly (no abrupt content swap).",
+        "Animations remain performant on mobile (no noticeable frame drops during basic navigation)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/PageTransitions.tsx",
+          "operation": "create",
+          "description": "Create a route transition wrapper using Framer Motion (e.g., AnimatePresence + motion) to animate between landing and mood pages with smooth celebratory transitions."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire PageTransitions into the router so navigation between \"/\" and \"/mood/:slug\" uses animated route transitions (no abrupt swaps)."
+        },
+        {
+          "path": "frontend/src/components/chat/ChatThread.tsx",
+          "operation": "modify",
+          "description": "Add initial-load stagger animation (fade + slide-up from bottom) for the mood page message list using Framer Motion while keeping performance mobile-friendly."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Add global typography with a sans-serif body font and a cursive/handwritten font for poem/key headings.",
+      "acceptanceCriteria": [
+        "Body text uses the sans-serif font across pages.",
+        "Poem section and designated headings use the cursive/handwritten font.",
+        "Font loading does not cause major layout shift (use sensible fallbacks and consistent sizing)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Add Google Fonts loading for one clean sans-serif (body) and one premium cursive/handwritten font (poems/key headings), with sensible fallbacks to reduce layout shift."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme fontFamily to provide consistent utility classes for the body sans font and the cursive/handwritten font used in poem/headings."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Apply global font defaults (sans for body) and define a class/utility mapping for cursive headings/poem text to ensure consistent typography across the app."
+        },
+        {
+          "path": "frontend/src/components/PoemReveal.tsx",
+          "operation": "modify",
+          "description": "Ensure the poem section (and any designated headings within it) uses the configured cursive/handwritten font consistently."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,239 @@
+{
+  "kind": "build_request",
+  "title": "Mobile-first birthday website for Gray with landing page, animated GIF carousel, and dynamic mood chat pages",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a frontend-only single-page app experience with client-side routing for: (1) a landing page at \"/\" and (2) dynamic mood pages at \"/mood/:slug\" (e.g., \"/mood/sad\").",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Clicking one routes to a dynamic mood page (e.g., /mood/[slug])."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Navigating from the landing page to any mood card updates the URL to /mood/<slug> and renders the mood page without a full page reload.",
+        "Refreshing the browser on /mood/<slug> still loads the correct mood page.",
+        "At least the following slugs are supported: sad, doubt, laugh, celebrate, stressed (names can match data IDs)."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add a static TypeScript mock data module (e.g., frontend/src/data.ts) that exports MoodSection and Message types and a list of MoodSection records, structured so URLs/text can be swapped later without code changes.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Create a data.ts file. Structure it so I can easily swap in the real links later."
+        ]
+      },
+      "acceptanceCriteria": [
+        "data.ts defines the Message and MoodSection types exactly as described (id, type, content, senderName, senderGifUrl; and mood id, title, themeColor, backgroundGradient, messages).",
+        "Landing page and mood pages read from this data module (no backend calls).",
+        "Data includes 5 mood sections that correspond to the landing page navigation labels."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Implement the landing page (\"/\") with a light, airy, celebratory design (soft pastels/whites/subtle gradients), strict mobile-first layout, and clean typography.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Theme: Light, airy, and celebratory. Soft pastels, whites, and subtle gradients.",
+          "Responsiveness: Strict Mobile-First approach."
+        ]
+      },
+      "acceptanceCriteria": [
+        "On small screens (e.g., ~375px width), spacing and typography are comfortable and not cramped; content does not overflow horizontally.",
+        "Tailwind responsive typography uses smaller defaults on mobile and scales up at md+ (e.g., text-sm base, text-base at md, and larger headings at lg).",
+        "Overall styling matches an “high-end digital greeting card” + “modern chat app” feel."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Add a landing-page hero section that displays a 3-GIF carousel for Gray with an infinite auto-play cross-fade transition (no hard cuts).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Display a container with 3 user-provided GIFs of Gray.",
+          "Implement a smooth cross-fade loop (infinite auto-play) using Framer Motion AnimatePresence. No jarring cuts."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Carousel cycles through exactly 3 GIF URLs sourced from the static data module (or a dedicated constant in the same module).",
+        "Transitions are cross-fade (opacity) and loop infinitely on a timer.",
+        "Only one GIF is visible at a time and the change is smooth (no flash/jump).",
+        "Hero remains responsive: maintains aspect ratio and looks good from mobile to desktop."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Add a poem section under the hero that uses a cursive/handwritten font for headings/poem text, centered and readable, with scroll-triggered reveal animation line-by-line or word-by-word.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Below the hero, display a heartfelt poem.",
+          "Use the Cursive font. Make it centered, elegant, and readable.",
+          "Fade in the text line-by-line or word-by-word as the user scrolls."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Poem text is centered and uses a distinct cursive/handwritten font compared to body text.",
+        "The reveal animation triggers as the poem scrolls into view and reveals progressively (line or word).",
+        "Animation is smooth on mobile and does not cause layout shifts (no jank)."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Implement an “Open when” navigation grid on the landing page with 5 distinctive cards/buttons labeled exactly: (1) Open when you feel sad (2) Open when doubting yourself (3) Open when you want to laugh (4) Open when celebrating something big (5) Open when overwhelmed or stressed; each navigates to its corresponding /mood/:slug page and has satisfying hover/tap scale feedback.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Create 5 distinctive buttons/cards with the following labels:",
+          "Open when you feel sad",
+          "Open when doubting yourself",
+          "Open when you want to laugh",
+          "Open when celebrating something big",
+          "Open when overwhelmed or stressed",
+          "Interaction: These buttons should have a satisfying hover/tap scale effect. Clicking one routes to a dynamic mood page (e.g., /mood/[slug])."
+        ]
+      },
+      "acceptanceCriteria": [
+        "All 5 labels match the provided text exactly.",
+        "Cards are laid out mobile-first (single column or 2-column as space allows) and become a grid on larger screens.",
+        "Hover (desktop) and tap (mobile) scale interactions are implemented and feel responsive.",
+        "Clicking a card navigates to the correct mood slug derived from the static data module."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Add landing-page footer actions with two distinct buttons: “Personal Playlist” and “Love Globe”, implemented as visual placeholders that only log a message to the console when clicked.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Two distinct buttons at the bottom: \"Personal Playlist\" and \"Love Globe\".",
+          "Note: These are currently visual placeholders; simply log to the console when clicked."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Both buttons render at the bottom of the landing page and are visually distinct.",
+        "Clicking each button triggers a unique console.log message identifying which button was clicked.",
+        "No navigation or backend calls occur from these buttons."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Implement dynamic mood pages at \"/mood/:slug\" that load the selected MoodSection from the static data module and apply mood-based theming (background gradient, accent colors, overall vibe) per mood.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Dynamic Theming: The background color, accent colors, and overall \"vibe\" must change based on the selected mood"
+        ]
+      },
+      "acceptanceCriteria": [
+        "For each mood slug, page background and accents change according to the MoodSection fields (themeColor and backgroundGradient).",
+        "At least these mood vibes are clearly differentiated: sad (soft blues/lavenders), celebrate (vibrant gold/confetti-like), stressed (calming sage/green).",
+        "If an unknown slug is visited, a user-friendly not-found state is shown with a way back to the landing page."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Create a premium chat-thread UI on mood pages that mimics a high-end WhatsApp/iMessage thread: message bubbles render text/audio/video message types, sender avatars are small looping GIFs, and message alignment alternates (or uses a consistent timeline style).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Layout: mimic a premium WhatsApp/iMessage thread.",
+          "Avatar: Instead of static profile pics, use small looping GIFs for the sender.",
+          "Bubbles: Render messages (Text, Audio players, or Video embeds) in chat bubbles.",
+          "Alignment: Alternating sides or centered \"timeline\" style"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Each message shows senderName and a GIF avatar (senderGifUrl) in/near the bubble.",
+        "Text messages render readable wrapped text with proper padding.",
+        "Audio messages render with an HTML5 audio player inside a bubble.",
+        "Video messages render as an embedded player (iframe or video) sized responsively within a bubble.",
+        "Message alignment is consistent and clearly intentional (alternating sides or a centered timeline)."
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Add motion/animation polish: (1) mood-page message list staggers in on initial load with fade + slide-up from bottom, and (2) add page transitions between routes that feel smooth and celebratory.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Animation: Messages should stagger-animate in from the bottom (fade + slide up) when the page loads.",
+          "Focus heavily on the Framer Motion components for the GIF carousel and Page Transitions."
+        ]
+      },
+      "acceptanceCriteria": [
+        "On entering a mood page, messages animate in with a stagger (not all at once) using fade + upward movement.",
+        "Route transitions between landing and mood pages animate smoothly (no abrupt content swap).",
+        "Animations remain performant on mobile (no noticeable frame drops during basic navigation)."
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Add global typography setup with two Google fonts: a clean sans-serif for body text and a premium cursive/handwritten font for poem text and key headings; ensure consistent application across the app.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Use a clean Sans-Serif for body text and a premium Cursive/Handwritten font like Great Vibes or Dancing Script for poems and headings."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Body text uses the sans-serif font across pages.",
+        "Poem section and designated headings use the cursive/handwritten font.",
+        "Font loading does not cause major layout shift (use sensible fallbacks and consistent sizing)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify any files under frontend/src/components/ui; compose them from outside if needed (read-only UI sources).",
+    "Do not edit frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, or frontend/src/main.tsx (immutable paths); integrate routing/pages/components without changing these files.",
+    "Backend must remain single-actor Motoko; do not introduce additional backend services or external databases.",
+    "Do not implement third-party authentication providers; Internet Identity is the only supported auth mechanism (not required for this app)."
+  ],
+  "nonGoals": [
+    "No backend persistence, admin panel, or database integration.",
+    "No real playlist integration or globe feature implementation beyond console logging placeholders.",
+    "No third-party API integrations (social media, maps, websockets, push notifications, email/SMS)."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

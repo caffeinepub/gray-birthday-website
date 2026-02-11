@@ -1,0 +1,219 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-frontend-only-single-page-app-experience-with-client-side-routing-for-1-a-landing-page-at-and-2-dynamic-mood-pages-at-mood-slug-e-g-mood-sad",
+      "featureTitle": "Create a frontend-only single-page app experience with client-side routing for: (1) a landing page at \"/\" and (2) dynamic mood pages at \"/mood/:slug\" (e.g., \"/mood/sad\").",
+      "files": [
+        "frontend/public/404.html",
+        "frontend/src/App.tsx",
+        "frontend/src/pages/LandingPage.tsx",
+        "frontend/src/pages/MoodPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-static-typescript-mock-data-module-e-g-frontend-src-data-ts-that-exports-moodsection-and-message-types-and-a-list-of-moodsection-records-structured-so-urls-text-can-be-swapped-later-without-code-changes",
+      "featureTitle": "Add a static TypeScript mock data module (e.g., frontend/src/data.ts) that exports MoodSection and Message types and a list of MoodSection records, structured so URLs/text can be swapped later without code changes.",
+      "files": [
+        "frontend/src/data.ts",
+        "frontend/src/pages/LandingPage.tsx",
+        "frontend/src/pages/MoodPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-landing-page-with-a-light-airy-celebratory-design-soft-pastels-whites-subtle-gradients-strict-mobile-first-layout-and-clean-typography",
+      "featureTitle": "Implement the landing page (\"/\") with a light, airy, celebratory design (soft pastels/whites/subtle gradients), strict mobile-first layout, and clean typography.",
+      "files": [
+        "frontend/src/index.css",
+        "frontend/src/pages/LandingPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-landing-page-hero-section-that-displays-a-3-gif-carousel-for-gray-with-an-infinite-auto-play-cross-fade-transition-no-hard-cuts",
+      "featureTitle": "Add a landing-page hero section that displays a 3-GIF carousel for Gray with an infinite auto-play cross-fade transition (no hard cuts).",
+      "files": [
+        "frontend/src/components/GifCarousel.tsx",
+        "frontend/src/pages/LandingPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-poem-section-under-the-hero-that-uses-a-cursive-handwritten-font-for-headings-poem-text-centered-and-readable-with-scroll-triggered-reveal-animation-line-by-line-or-word-by-word",
+      "featureTitle": "Add a poem section under the hero that uses a cursive/handwritten font for headings/poem text, centered and readable, with scroll-triggered reveal animation line-by-line or word-by-word.",
+      "files": [
+        "frontend/src/components/PoemReveal.tsx",
+        "frontend/src/pages/LandingPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-an-open-when-navigation-grid-on-the-landing-page-with-5-distinctive-cards-buttons-labeled-exactly-1-open-when-you-feel-sad-2-open-when-doubting-yourself-3-open-when-you-want-to-laugh-4-open-when-celebrating-something-big-5-open-when-overwhelmed-or-stressed-each-navigates-to-its-corresponding-mood-slug-page-and-has-satisfying-hover-tap-scale-feedback",
+      "featureTitle": "Implement an “Open when” navigation grid on the landing page with 5 distinctive cards/buttons labeled exactly: (1) Open when you feel sad (2) Open when doubting yourself (3) Open when you want to laugh (4) Open when celebrating something big (5) Open when overwhelmed or stressed; each navigates to its corresponding /mood/:slug page and has satisfying hover/tap scale feedback.",
+      "files": [
+        "frontend/src/components/OpenWhenGrid.tsx",
+        "frontend/src/pages/LandingPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-landing-page-footer-actions-with-two-distinct-buttons-personal-playlist-and-love-globe-implemented-as-visual-placeholders-that-only-log-a-message-to-the-console-when-clicked",
+      "featureTitle": "Add landing-page footer actions with two distinct buttons: “Personal Playlist” and “Love Globe”, implemented as visual placeholders that only log a message to the console when clicked.",
+      "files": [
+        "frontend/src/components/FooterActions.tsx",
+        "frontend/src/pages/LandingPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-dynamic-mood-pages-at-mood-slug-that-load-the-selected-moodsection-from-the-static-data-module-and-apply-mood-based-theming-background-gradient-accent-colors-overall-vibe-per-mood",
+      "featureTitle": "Implement dynamic mood pages at \"/mood/:slug\" that load the selected MoodSection from the static data module and apply mood-based theming (background gradient, accent colors, overall vibe) per mood.",
+      "files": [
+        "frontend/src/pages/MoodPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-premium-chat-thread-ui-on-mood-pages-that-mimics-a-high-end-whatsapp-imessage-thread-message-bubbles-render-text-audio-video-message-types-sender-avatars-are-small-looping-gifs-and-message-alignment-alternates-or-uses-a-consistent-timeline-style",
+      "featureTitle": "Create a premium chat-thread UI on mood pages that mimics a high-end WhatsApp/iMessage thread: message bubbles render text/audio/video message types, sender avatars are small looping GIFs, and message alignment alternates (or uses a consistent timeline style).",
+      "files": [
+        "frontend/src/components/chat/ChatMessageBubble.tsx",
+        "frontend/src/components/chat/ChatThread.tsx",
+        "frontend/src/pages/MoodPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-motion-animation-polish-1-mood-page-message-list-staggers-in-on-initial-load-with-fade-slide-up-from-bottom-and-2-add-page-transitions-between-routes-that-feel-smooth-and-celebratory",
+      "featureTitle": "Add motion/animation polish: (1) mood-page message list staggers in on initial load with fade + slide-up from bottom, and (2) add page transitions between routes that feel smooth and celebratory.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/chat/ChatThread.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-global-typography-setup-with-two-google-fonts-a-clean-sans-serif-for-body-text-and-a-premium-cursive-handwritten-font-for-poem-text-and-key-headings-ensure-consistent-application-across-the-app",
+      "featureTitle": "Add global typography setup with two Google fonts: a clean sans-serif for body text and a premium cursive/handwritten font for poem text and key headings; ensure consistent application across the app.",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/components/PoemReveal.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

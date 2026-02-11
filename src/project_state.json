@@ -1,0 +1,170 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Build a fully responsive, mobile-first Birthday Website for \"Gray\" using Next.js 14 (App Router), Tailwind CSS, and Framer Motion, featuring a landing page with GIF carousel/poem/open-when navigation plus dynamic themed mood pages with an animated chat-style thread fed from static TypeScript mock data.",
+  "architectural_notes": [
+    "Use static TypeScript mock data (data.ts) as the only data source; no backend/database.",
+    "Next.js 14+ App Router with dynamic route /mood/[slug] driven by mood section IDs/slugs from data.ts.",
+    "Use next/font/google for two fonts: clean sans-serif for body and cursive/handwritten for headings/poem.",
+    "Use Framer Motion for key interactions: GIF carousel cross-fade loop (AnimatePresence) and page/message transitions.",
+    "Mobile-first Tailwind approach: optimize for smallest screens first, then scale up."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-a-frontend-only-single-page-app-experience-with-client-side-routing-for-1-a-landing-page-at-and-2-dynamic-mood-pages-at-mood-slug-e-g-mood-sad",
+      "title": "Create a frontend-only single-page app experience with client-side routing for: (1) a landing page at \"/\" and (2) dynamic mood pages at \"/mood/:slug\" (e.g., \"/mood/sad\").",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-static-typescript-mock-data-module-e-g-frontend-src-data-ts-that-exports-moodsection-and-message-types-and-a-list-of-moodsection-records-structured-so-urls-text-can-be-swapped-later-without-code-changes",
+      "title": "Add a static TypeScript mock data module (e.g., frontend/src/data.ts) that exports MoodSection and Message types and a list of MoodSection records, structured so URLs/text can be swapped later without code changes.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-landing-page-with-a-light-airy-celebratory-design-soft-pastels-whites-subtle-gradients-strict-mobile-first-layout-and-clean-typography",
+      "title": "Implement the landing page (\"/\") with a light, airy, celebratory design (soft pastels/whites/subtle gradients), strict mobile-first layout, and clean typography.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-landing-page-hero-section-that-displays-a-3-gif-carousel-for-gray-with-an-infinite-auto-play-cross-fade-transition-no-hard-cuts",
+      "title": "Add a landing-page hero section that displays a 3-GIF carousel for Gray with an infinite auto-play cross-fade transition (no hard cuts).",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-poem-section-under-the-hero-that-uses-a-cursive-handwritten-font-for-headings-poem-text-centered-and-readable-with-scroll-triggered-reveal-animation-line-by-line-or-word-by-word",
+      "title": "Add a poem section under the hero that uses a cursive/handwritten font for headings/poem text, centered and readable, with scroll-triggered reveal animation line-by-line or word-by-word.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-an-open-when-navigation-grid-on-the-landing-page-with-5-distinctive-cards-buttons-labeled-exactly-1-open-when-you-feel-sad-2-open-when-doubting-yourself-3-open-when-you-want-to-laugh-4-open-when-celebrating-something-big-5-open-when-overwhelmed-or-stressed-each-navigates-to-its-corresponding-mood-slug-page-and-has-satisfying-hover-tap-scale-feedback",
+      "title": "Implement an “Open when” navigation grid on the landing page with 5 distinctive cards/buttons labeled exactly: (1) Open when you feel sad (2) Open when doubting yourself (3) Open when you want to laugh (4) Open when celebrating something big (5) Open when overwhelmed or stressed; each navigates to its corresponding /mood/:slug page and has satisfying hover/tap scale feedback.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-landing-page-footer-actions-with-two-distinct-buttons-personal-playlist-and-love-globe-implemented-as-visual-placeholders-that-only-log-a-message-to-the-console-when-clicked",
+      "title": "Add landing-page footer actions with two distinct buttons: “Personal Playlist” and “Love Globe”, implemented as visual placeholders that only log a message to the console when clicked.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-dynamic-mood-pages-at-mood-slug-that-load-the-selected-moodsection-from-the-static-data-module-and-apply-mood-based-theming-background-gradient-accent-colors-overall-vibe-per-mood",
+      "title": "Implement dynamic mood pages at \"/mood/:slug\" that load the selected MoodSection from the static data module and apply mood-based theming (background gradient, accent colors, overall vibe) per mood.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-premium-chat-thread-ui-on-mood-pages-that-mimics-a-high-end-whatsapp-imessage-thread-message-bubbles-render-text-audio-video-message-types-sender-avatars-are-small-looping-gifs-and-message-alignment-alternates-or-uses-a-consistent-timeline-style",
+      "title": "Create a premium chat-thread UI on mood pages that mimics a high-end WhatsApp/iMessage thread: message bubbles render text/audio/video message types, sender avatars are small looping GIFs, and message alignment alternates (or uses a consistent timeline style).",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-motion-animation-polish-1-mood-page-message-list-staggers-in-on-initial-load-with-fade-slide-up-from-bottom-and-2-add-page-transitions-between-routes-that-feel-smooth-and-celebratory",
+      "title": "Add motion/animation polish: (1) mood-page message list staggers in on initial load with fade + slide-up from bottom, and (2) add page transitions between routes that feel smooth and celebratory.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-global-typography-setup-with-two-google-fonts-a-clean-sans-serif-for-body-text-and-a-premium-cursive-handwritten-font-for-poem-text-and-key-headings-ensure-consistent-application-across-the-app",
+      "title": "Add global typography setup with two Google fonts: a clean sans-serif for body text and a premium cursive/handwritten font for poem text and key headings; ensure consistent application across the app.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Set up Next.js 14+ (App Router) project with Tailwind CSS, Framer Motion, Lucide React, and next/font/google (sans + cursive/handwritten)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Landing page: Hero section with 3-GIF cross-fade auto-playing carousel using Framer Motion AnimatePresence",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Landing page: Poem section using cursive font with scroll-triggered line-by-line/word-by-word reveal animation",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Landing page: 'Open When' navigation grid with 5 mood cards, hover/tap scale interactions, routing to /mood/[slug]",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Landing page: Footer actions for 'Personal Playlist' and 'Love Globe' as visual placeholders logging to console on click",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Dynamic mood pages (/mood/[slug]) with mood-based theming (background/accents/gradients) driven by data",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Mood pages: Chat-style thread UI (premium iMessage/WhatsApp feel) with sender GIF avatars and chat bubbles supporting text/audio/video messages",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Mood pages: Staggered message entrance animations on load (fade + slide up)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Create static TypeScript data.ts mock data structure (MoodSection/Message) for easy swapping of real links later",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Ensure strict mobile-first responsive styling (e.g., text-sm on mobile, text-base on md) and high-quality, airy pastel visual design",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Gray Birthday Website",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

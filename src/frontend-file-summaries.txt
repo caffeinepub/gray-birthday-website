@@ -1,0 +1,16 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup for landing page, dynamic mood pages, and 404 handling without framer-motion dependency.",
+  "frontend/src/data.ts": "Static data module containing TypeScript types and mock data for hero GIFs, birthday poem, and 5 mood sections with messages.",
+  "frontend/src/pages/LandingPage.tsx": "Landing page component featuring hero carousel, poem section, open-when navigation grid, footer actions, and attribution footer.",
+  "frontend/src/pages/MoodPage.tsx": "Dynamic mood page component that displays themed chat threads based on URL slug parameter with back navigation.",
+  "frontend/src/components/GifCarousel.tsx": "Auto-playing image carousel component with smooth CSS transitions and navigation indicators for hero section.",
+  "frontend/src/components/PoemReveal.tsx": "Scroll-triggered poem reveal component with staggered line animations using Intersection Observer API.",
+  "frontend/src/components/OpenWhenGrid.tsx": "Responsive grid of mood cards with hover/tap scale effects that navigate to corresponding mood pages.",
+  "frontend/src/components/FooterActions.tsx": "Footer action buttons component for Personal Playlist and Love Globe features with console logging.",
+  "frontend/src/components/chat/ChatThread.tsx": "Chat thread container component that renders messages with staggered entrance animations.",
+  "frontend/src/components/chat/ChatMessageBubble.tsx": "Individual message bubble component supporting text, audio, and video content types with sender avatars.",
+  "frontend/src/index.css": "Global styles with OKLCH color system, custom animations, and Dancing Script cursive font for poems and headings.",
+  "frontend/index.html": "HTML entry point with Google Fonts preload for Inter (body) and Dancing Script (cursive) fonts.",
+  "frontend/tailwind.config.js": "Tailwind configuration with custom font families, extended color palette, and animation utilities.",
+  "frontend/public/404.html": "SPA fallback page that redirects to root for client-side routing on static hosting."
+}
